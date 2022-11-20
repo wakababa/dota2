@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="683d9fd1-5b08-49a0-8b9f-66f21779bf66" name="Changes" comment="initial" />
+    <list default="true" id="683d9fd1-5b08-49a0-8b9f-66f21779bf66" name="Changes" comment="initial">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/heroes/$heroId.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/heroes/$heroId.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/heroes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/heroes/index.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,11 +32,28 @@
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "/Users/altugbulbul/Desktop/dota2",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/Users/altugbulbul/Desktop/dota2/node_modules/typescript/lib"
+    "ts.external.directory.path": "/Users/altugbulbul/Library/Application Support/JetBrains/Toolbox/apps/IDEA-U/ch-0/222.4345.14/IntelliJ IDEA.app/Contents/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="dota2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="dota2" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -39,6 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1668952645927</updated>
       <workItem from="1668952648571" duration="287000" />
+      <workItem from="1668966031776" duration="355000" />
     </task>
     <task id="LOCAL-00001" summary="initial">
       <created>1668952697183</created>

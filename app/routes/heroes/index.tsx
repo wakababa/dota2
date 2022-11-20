@@ -71,7 +71,6 @@ const SearchHeroes = ({ onHandleChange }: { onHandleChange: Function }) => {
 export default function Heroes() {
   const { heroes } = useLoaderData() as LoaderData;
   const [search, setSearch] = useState<String>("");
-  console.log("heroes",heroes)
   return (
     <div style={{
       display: "flex", flexDirection: "column", alignItems: "center", height: "100vh",
