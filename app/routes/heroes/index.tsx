@@ -1,10 +1,12 @@
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
+import { useState } from "react";
 
 export async function gerHeroes() {
   const res = await fetch(`https://www.dota2.com/datafeed/herolist?language=english`).then((res) => res.json());
   return res.result.data.heroes;
 }
+
 type LoaderData = {
   heroes: Awaited<ReturnType<typeof gerHeroes>>;
 };
@@ -31,21 +33,56 @@ enum Primary_attrEnum {
 
 const Hero = ({ hero }: { hero: HeroProps }) => {
   const { name, name_english_loc, primary_attr } = hero;
+  return (
+    <div style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      justifyContent: "flex-end",
+      backgroundImage: `url("https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/${name.split("npc_dota_hero_")[1]}.png")`,
+      backgroundSize: "cover",
+      left: "calc(122px + (2 * (100% - 225px)) / 4)",
+      top: "calc(284px)",
+      width: 225,
+      height: 127
+    }}>
+      <h6 style={{
+        marginTop: "auto",
+        background: "white",
+        padding: 10,
+        margin: 0,
+        borderTopRightRadius: 20
+      }}>{name_english_loc}</h6>
+    </div>
+  );
+};
+
+const SearchHeroes = ({ onHandleChange }: { onHandleChange: Function }) => {
 
   return (
-    <div style={{background:"red",padding:10,margin:5,display:"flex",flexDirection:"column",alignItems:"center"}}>
-      <p>{name_english_loc}</p>
-      <p>{Primary_attrEnum[primary_attr]}</p>
-    </div>
+    <input style={{padding:15,margin:5}} placeholder={"Search"}  type={"text"} onChange={(e) => onHandleChange(e.target.value)} />
   );
 };
 
 export default function Heroes() {
   const { heroes } = useLoaderData() as LoaderData;
-
+  const [search, setSearch] = useState<String>("");
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4",display:"flex",flexDirection:"row", flexWrap:"wrap" }}>
-      {heroes.map((hero: HeroProps) => <Hero hero={hero} />)}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center",height:"100vh",
+            backgroundImage:'url("https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/backgrounds/featured.jpg")',
+            padding:10
+          }}>
+            <SearchHeroes onHandleChange={(val: String) => setSearch(val)} />
+            <div style={{
+                fontFamily: "system-ui, sans-serif",
+              lineHeight: "1.4",
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              width: 700
+            }}>
+              {heroes.filter((hero: HeroProps) => hero.name_english_loc.toLocaleLowerCase().includes(String(search))).map((hero: HeroProps) => <Hero hero={hero} />)}
+      </div>
     </div>
   );
 }
