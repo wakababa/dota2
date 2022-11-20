@@ -7,6 +7,7 @@ export async function gerHeroes() {
   return res.result.data.heroes;
 }
 
+
 type LoaderData = {
   heroes: Awaited<ReturnType<typeof gerHeroes>>;
 };
@@ -32,9 +33,9 @@ enum Primary_attrEnum {
 }
 
 const Hero = ({ hero }: { hero: HeroProps }) => {
-  const { name, name_english_loc, primary_attr } = hero;
+  const {id, name, name_english_loc, primary_attr } = hero;
   return (
-    <div style={{
+    <a style={{
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-start",
@@ -44,8 +45,11 @@ const Hero = ({ hero }: { hero: HeroProps }) => {
       left: "calc(122px + (2 * (100% - 225px)) / 4)",
       top: "calc(284px)",
       width: 225,
-      height: 127
-    }}>
+      height: 127,
+      textDecoration:"none"
+    }}
+      href={`heroes/${id}`}
+    >
       <h6 style={{
         marginTop: "auto",
         background: "white",
@@ -53,35 +57,38 @@ const Hero = ({ hero }: { hero: HeroProps }) => {
         margin: 0,
         borderTopRightRadius: 20
       }}>{name_english_loc}</h6>
-    </div>
+    </a>
   );
 };
 
 const SearchHeroes = ({ onHandleChange }: { onHandleChange: Function }) => {
-
   return (
-    <input style={{padding:15,margin:5}} placeholder={"Search"}  type={"text"} onChange={(e) => onHandleChange(e.target.value)} />
+    <input style={{ padding: 15, margin: 5 }} placeholder={"Search"} type={"text"}
+           onChange={(e) => onHandleChange(e.target.value)} />
   );
 };
 
 export default function Heroes() {
   const { heroes } = useLoaderData() as LoaderData;
   const [search, setSearch] = useState<String>("");
+  console.log("heroes",heroes)
   return (
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center",height:"100vh",
-            backgroundImage:'url("https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/backgrounds/featured.jpg")',
-            padding:10
-          }}>
-            <SearchHeroes onHandleChange={(val: String) => setSearch(val)} />
-            <div style={{
-                fontFamily: "system-ui, sans-serif",
-              lineHeight: "1.4",
-              display: "flex",
-              flexDirection: "row",
-              flexWrap: "wrap",
-              width: 700
-            }}>
-              {heroes.filter((hero: HeroProps) => hero.name_english_loc.toLocaleLowerCase().includes(String(search))).map((hero: HeroProps) => <Hero hero={hero} />)}
+    <div style={{
+      display: "flex", flexDirection: "column", alignItems: "center", height: "100vh",
+      backgroundImage: "url(\"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/backgrounds/featured.jpg\")",
+      padding: 10
+    }}>
+      <SearchHeroes onHandleChange={(val: String) => setSearch(val)} />
+      <div style={{
+        fontFamily: "system-ui, sans-serif",
+        lineHeight: "1.4",
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        width: 700
+      }}>
+        {heroes.filter((hero: HeroProps) => hero.name_english_loc.toLocaleLowerCase().includes(String(search))).map((hero: HeroProps) =>
+          <Hero hero={hero} />)}
       </div>
     </div>
   );
