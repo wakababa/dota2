@@ -4,9 +4,7 @@ import { useLoaderData } from "@remix-run/react";
 export async function gerHeroes() {
   const res = await fetch(`https://www.dota2.com/datafeed/herolist?language=english`).then((res) => res.json());
   return res.result.data.heroes;
-
 }
-
 type LoaderData = {
   heroes: Awaited<ReturnType<typeof gerHeroes>>;
 };
